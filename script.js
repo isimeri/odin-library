@@ -125,7 +125,10 @@ function updIsRead(isReadSwitch){
 function loadFromLocalStorage(){
     const libraryArr = localStorage.getItem("libraryArr");
 
-    return JSON.parse(libraryArr);
+    if(libraryArr){
+        return JSON.parse(libraryArr);
+    }
+    return [];
 }
 
 function saveToLocalStorage(){
