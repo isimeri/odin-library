@@ -1,0 +1,192 @@
+:root{
+    --gold1:#291b00;
+    --gold2:#3d2900;
+    --gold3:#523600;
+    --gold4:#7a5200;
+    --gold5:#a36d00;
+    --gold6:#cc8800;
+    --gold7:#e09600;
+    --gold8:#f5a300;
+    --gold9:#ffad0a;
+    --gold10: #ffbb33;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    /* font-family: "Poppins", sans-serif; */
+    font-family: "Kode Mono", monospace;
+    color: var(--gold10);
+}
+.container-supremeth{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    min-height: 100vh;
+}
+/* ===================form-section================= */
+.form-wrapper{
+    background-color: var(--gold1);
+    padding: 2rem 1rem;
+    /* border-right: 3px solid var(--gold1); */
+}
+.form-wrapper > h3{
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+/* ========================form-controls=============== */
+.form-control{
+    margin-bottom: 1rem;
+}
+.form-control.column{
+    display: flex;
+    flex-direction: column;
+}
+.form-control > label{
+    margin-bottom: 0.1rem;
+}
+.form-control:not(.column) > label{
+    margin-left: 0.4rem;
+}
+.form-control > input{
+    padding: 0.4rem 0 0.4rem 1rem;
+    font-size: 1rem;
+    border: none;
+}
+.form-control > input:focus{
+    outline: 3px solid var(--gold8);
+}
+/* ==========================main-section============================= */
+.main-wrapper{
+    background: repeating-linear-gradient(to bottom, var(--gold1) 0px, var(--gold1) 4px, var(--gold2) 4px, var(--gold3) 8px);
+    background-color: var(--gold4);
+    padding: 2rem;
+}
+.main-wrapper > .header{
+    margin-bottom: 1rem;
+}
+.books-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+/* =======================book================================ */
+.book{
+    padding: 2rem 1rem;
+    background-color: #291b00cc;
+    border: 2px solid var(--gold8);
+    display: flex;
+    flex-direction: column;
+}
+.book > .title{
+    font-size: 2rem;
+}
+.book > .author{
+    font-size: 0.8rem;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--gold4);
+}
+.book > .pages{
+    margin-bottom: 0.4rem;
+}
+.isRead-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--gold4);
+    /* margin-bottom: max(0.4rem, auto); */
+    margin-bottom: 0.4rem;
+}
+.book > .btn-delete{
+    align-self: flex-end;
+}
+
+/* =====================buttons===================== */
+.btn{
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border: none;
+    background-color: var(--gold8);
+    color: var(--gold1);
+    transition: all 0.2s ease-in-out;
+}
+.btn:hover{
+    background-color: var(--gold10);
+    cursor: pointer;
+}
+
+
+
+
+/* ================switch-button================= */
+ /* The switch - the box around the slider */
+ .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--gold2);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--gold9);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--gold8);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--gold8)
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 69px;
+    outline: 1px solid var(--gold8);
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  } 
+  input:checked + .slider:before {
+    background-color: var(--gold1);
+  }
