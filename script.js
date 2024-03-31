@@ -13,6 +13,11 @@ function Book(id, title, author, nrPages, isRead){
     }
 }
 
+Book.prototype.updRead = function(){
+
+    this.read = !this.read;
+}
+
 function addBookToLibrary(){
     const title = document.querySelector("#title-input");
     const author = document.querySelector("#author-input");
@@ -79,8 +84,9 @@ function createBookElem(bookObj, fragment){
     bookDiv.append(btnDelete);
 
     fragment.append(bookDiv);
-
+    
 }
+
 
 function refreshLibraryLight(bookObj){
     const fragment = new DocumentFragment();
@@ -101,32 +107,37 @@ function refreshLibraryFull(){
 
 }
 
-function updIsRead(isReadSwitch){
+function updReadDom(isReadSwitch){
+    const bookElem = isReadSwitch.closest(".book");
+    const readStatus = bookElem.querySelector(".isRead-text");
+    
+    if(isReadSwitch.checked){
+        readStatus.textContent = "Already read";
+    } else {
+        readStatus.textContent = "Not read yet";
+    }
+}
 
+function getBookIndexByReadSwitch(isReadSwitch){
     const bookElem = isReadSwitch.closest(".book");
     const bookId = bookElem.dataset.bookId;
-    const readStatus = bookElem.querySelector(".isRead-text");
 
     const bookUpdIndex = library.findIndex(elem => {
         return elem.id === parseInt(bookId);
     });
-    
-    if(isReadSwitch.checked){
-        library[bookUpdIndex].read = true;
-        readStatus.textContent = "Already read";
-    } else {
-        library[bookUpdIndex].read = false;
-        readStatus.textContent = "Not read yet";
-    }
 
-    saveToLocalStorage();
+    return bookUpdIndex;
 }
 
 function loadFromLocalStorage(){
     const libraryArr = localStorage.getItem("libraryArr");
 
     if(libraryArr){
-        return JSON.parse(libraryArr);
+        const parsedString = JSON.parse(libraryArr);
+        const lib = parsedString.map(obj => {
+            return new Book(obj.id, obj.title, obj.author, obj.pages, obj.read);
+        });
+        return lib;
     }
     return [];
 }
@@ -167,7 +178,10 @@ booksContainer.addEventListener("click", e => {
 booksContainer.addEventListener("change", e => {
     if(e.target.classList.contains("isRead-checkbox")){
         // console.log(e.target);
-        updIsRead(e.target);
+        const bookIndex = getBookIndexByReadSwitch(e.target);
+        updReadDom(e.target);
+        library[bookIndex].updRead();
+        saveToLocalStorage();
     }
 });
 
